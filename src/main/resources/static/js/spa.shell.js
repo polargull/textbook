@@ -14,15 +14,11 @@
 spa.shell = (function () {
   var
     configMap = {
-      anchor_schema_map : {
-        chat  : { open : true, closed : true }
-      },
       main_html : '<p>shell test</p>'
     },
     stateMap  = {
       $container        : null,
-      anchor_map        : {},
-      is_chat_retracted : true
+      anchor_map        : {}
     },
     jqueryMap = {},
 
@@ -36,8 +32,7 @@ spa.shell = (function () {
     var $container = stateMap.$container;
 
     jqueryMap = {
-      $container : $container,
-      $chat      : $container.find( '#chat' )
+      $container : $container
     };
   };
   changeAnchorPart = function ( arg_map ) {
@@ -83,9 +78,7 @@ spa.shell = (function () {
   onHashchange = function ( event ) {
     var
       anchor_map_previous = copyAnchorMap(),
-      anchor_map_proposed,
-      _s_chat_previous, _s_chat_proposed,
-      s_chat_proposed;
+      anchor_map_proposed;
 
     // attempt to parse anchor
     try { anchor_map_proposed = $.uriAnchor.makeAnchorMap(); }
@@ -94,37 +87,10 @@ spa.shell = (function () {
       return false;
     }
     stateMap.anchor_map = anchor_map_proposed;
-
-    // convenience vars
-    _s_chat_previous = anchor_map_previous._s_chat;
-    _s_chat_proposed = anchor_map_proposed._s_chat;
-
-    // Begin adjust chat component if changed
-    if ( ! anchor_map_previous
-     || _s_chat_previous !== _s_chat_proposed
-    ) {
-      s_chat_proposed = anchor_map_proposed.chat;
-      switch ( s_chat_proposed ) {
-        case 'open'   :
-          toggleChat( true );
-        break;
-        case 'closed' :
-          toggleChat( false );
-        break;
-        default  :
-          toggleChat( false );
-          delete anchor_map_proposed.chat;
-          $.uriAnchor.setAnchor( anchor_map_proposed, null, true );
-      }
-    }
-    // End adjust chat component if changed
-
     return false;
   };
   onClickChat = function ( event ) {
-    changeAnchorPart({
-      chat: ( stateMap.is_chat_retracted ? 'open' : 'closed' )
-    });
+    changeAnchorPart({});
     return false;
   };
   initModule = function ( $container ) {
@@ -133,9 +99,7 @@ spa.shell = (function () {
     $container.html( configMap.main_html );
     setJqueryMap();
 
-//    $.uriAnchor.configModule({
-//      schema_map : configMap.anchor_schema_map
-//    });
+    $.uriAnchor.configModule({});
 
     spa.chat.configModule( {} );
     spa.chat.initModule( jqueryMap.$container );
