@@ -15,10 +15,7 @@
 spa.chat = (function () {
   var
     configMap = {
-      main_html : String()
-        + '<div style="padding:1em; color:#fff;">'
-          + 'Say hello to chat'
-        + '</div>',
+      main_html : String() + 'Say hello to chat',
       settable_map : {}
     },
     stateMap  = { $container : null },
@@ -38,8 +35,8 @@ spa.chat = (function () {
     });
     return true;
   };
-  initModule = function ( $container ) {
-    $container.html( configMap.main_html );
+  initModule = function ( $append_target ) {
+    $append_target.append( configMap.main_html );
     stateMap.$container = $container;
     setJqueryMap();
     return true;
