@@ -15,17 +15,27 @@
 spa.chat = (function () {
   var
     configMap = {
-      main_html : String() + 'Say hello to chat',
-      settable_map : {}
+      main_html : String() + '<input id="testText" type="text"></input><button id="testBtn">Test</button>',
+      settable_map : {set_text_anchor : true},
+      set_text_anchor : null
     },
     stateMap  = { $container : null },
     jqueryMap = {},
 
-    setJqueryMap, configModule, initModule
+    setJqueryMap, configModule, initModule,
+    onTestBtn
     ;
   setJqueryMap = function () {
     var $container = stateMap.$container;
-    jqueryMap = { $container : $container };
+    jqueryMap = {
+        $container  : $container,
+        $testText   : $( '#testText' ),
+        $testBtn    : $( '#testBtn' )
+    };
+  };
+  onTestBtn = function() {
+    jqueryMap.$testText.val('test');
+    configMap.set_text_anchor('test');
   };
   configModule = function ( input_map ) {
     spa.util.setConfigMap({
@@ -35,10 +45,11 @@ spa.chat = (function () {
     });
     return true;
   };
-  initModule = function ( $append_target ) {
-    $append_target.append( configMap.main_html );
+  initModule = function ( $container ) {
+    $container.append( configMap.main_html );
     stateMap.$container = $container;
     setJqueryMap();
+    jqueryMap.$testBtn.on('click', onTestBtn);
     return true;
   };
   // End public method /initModule/
