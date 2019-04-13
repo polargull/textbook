@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carbon - Admin Template</title>
+    <link rel="stylesheet" href="./vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="./vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./vendor/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+</head>
+
+<body class="sidebar-fixed header-fixed">
+    <div class="page-wrapper">
+        <div class="page-header">
+            <nav class="navbar page-header">
+                <a class="navbar-brand" href="#">
+                    <img src="./imgs/logo.png" alt="logo">
+                </a>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="./imgs/avatar-1.png" class="avatar avatar-sm" alt="logo">
+                            <span class="small ml-1 d-md-down-none">张三</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="#" class="dropdown-item">
+                                <i class="fa fa-user"></i> 个人信息
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main-container">
+            <div class="sidebar" style="background-color: #efefef;padding: 10px;">
+                <nav class="sidebar-nav">
+                    <ul id="treeDemo" class="nav ztree" style="margin-bottom: 10px;">
+                    </ul>
+                    <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#modal-1">我的书签</button>
+                </nav>
+            </div>
+            <div class="content" style="margin-top: 37px">
+                <div class="container-fluid" style="padding-right:0;padding-left:0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-light">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-1">查看笔记</button>
+                                            <button class="btn btn-danger btn-sm">加书签</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="progress mt-1">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 35%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">进度: 35%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p>
+                                        <img class="normal" width="160px" src="images/test.jpeg" />
+                                    </p>
+                                    <p style="margin-top: 26px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify;">
+                                        米克-舒马赫参加法拉利F1赛车试车。图片来源：Osports全体育图片社
+                                    </p>
+                                    <p style="margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify;">
+                                        <span class="bjh-p">中新网客户端北京4月3日电(王昊)开着红色的法拉利赛车，围场边站着科琳娜，这F1车迷熟悉的一幕中，唯一不同的是，在赛道上驰骋的人从车王舒马赫换成了他的儿子。当地时间4月2日，米克-舒马赫在巴林完成了首次F1试车，而他的父亲，还在为了健康做着顽强的斗争。</span>
+                                    </p>
+                                    <p style="margin-top: 22px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify;">
+                                        <span class="bjh-p">根据法拉利车队官方发布的消息，米克-舒马赫在试车时，驾驶着SF90共完成了56圈超300公里的里程数，最佳单圈成绩1分29秒976，位列当天最快圈速第二。在完成测试后，他说：“我真的非常享受这一天，进入车库伊始就像回家了一样，很多人都是从我很小的时候就认识了。”</span>
+                                    </p>
+                                    <p style="margin-top: 26px; margin-bottom: 0px; padding: 0px; font-size: 16px; line-height: 24px; color: rgb(51, 51, 51); text-align: justify;">
+                                        米克驾驶法拉利F1赛车。图片来源：Osports全体育图片社
+                                    </p>
+                                    <p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary">上页</button>
+                            <button class="btn btn-primary">下页</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer"></div>
+    </div>
+    <div class="modal fade" id="modal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Pellentesque lacinia non massa a euismod.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./vendor/jquery/jquery.min.js"></script>
+    <script src="./vendor/popper/popper.min.js"></script>
+    <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./vendor/chart.js/chart.min.js"></script>
+    <script src="./js/demo.js"></script>
+    <script type="text/javascript" src="./vendor/ztree/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript">
+    var setting = {
+        view: {
+            selectedMulti: false
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        }
+    };
+    var zNodes = [
+        { id: 1, pId: 0, name: "父节点 1", open: true },
+        { id: 11, pId: 1, name: "叶子节点 1-1" },
+        { id: 12, pId: 1, name: "叶子节点 1-2" },
+        { id: 13, pId: 1, name: "叶子节点 1-3" },
+        { id: 2, pId: 0, name: "父节点 2", open: true },
+        { id: 21, pId: 2, name: "叶子节点 2-1" },
+        { id: 22, pId: 2, name: "叶子节点 2-2" },
+        { id: 23, pId: 2, name: "叶子节点 2-3" },
+        { id: 3, pId: 0, name: "父节点 3", open: true },
+        { id: 31, pId: 3, name: "叶子节点 3-1" },
+        { id: 32, pId: 3, name: "叶子节点 3-2" },
+        { id: 33, pId: 3, name: "叶子节点 3-3" }
+    ];
+    var log, className = "dark";
+
+    function beforeDrag(treeId, treeNodes) {
+        return false;
+    }
+
+    function beforeEditName(treeId, treeNode) {
+        className = (className === "dark" ? "" : "dark");
+        showLog("[ " + getTime() + " beforeEditName ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        zTree.selectNode(treeNode);
+        setTimeout(function() {
+            if (confirm("进入节点 -- " + treeNode.name + " 的编辑状态吗？")) {
+                setTimeout(function() {
+                    zTree.editName(treeNode);
+                }, 0);
+            }
+        }, 0);
+        return false;
+    }
+
+    function selectAll() {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        zTree.setting.edit.editNameSelectAll = $("#selectAll").attr("checked");
+    }
+
+    $(document).ready(function() {
+        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+        $("#selectAll").bind("click", selectAll);
+    });
+    </script>
+</body>
+
+</html>
