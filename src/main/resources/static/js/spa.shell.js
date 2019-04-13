@@ -24,7 +24,7 @@ spa.shell = (function () {
 
     copyAnchorMap,    setJqueryMap,
     changeAnchorPart, onHashchange,
-    onClickChat,      setTextAnchor, initModule;
+    setTextAnchor, initModule;
   copyAnchorMap = function () {
     return $.extend( true, {}, stateMap.anchor_map );
   };
@@ -90,10 +90,7 @@ spa.shell = (function () {
       return false;
     }
     stateMap.anchor_map = anchor_map_proposed;
-    return false;
-  };
-  onClickChat = function ( event ) {
-    changeAnchorPart({});
+    spa.chat.setText( anchor_map_proposed.text );
     return false;
   };
   initModule = function ( $container ) {

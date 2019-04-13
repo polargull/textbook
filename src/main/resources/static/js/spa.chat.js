@@ -23,7 +23,7 @@ spa.chat = (function () {
     jqueryMap = {},
 
     setJqueryMap, configModule, initModule,
-    onTestBtn
+    onTestBtn, setText
     ;
   setJqueryMap = function () {
     var $container = stateMap.$container;
@@ -36,6 +36,9 @@ spa.chat = (function () {
   onTestBtn = function() {
     jqueryMap.$testText.val('test');
     configMap.set_text_anchor('test');
+  };
+  setText = function(textVal) {
+     jqueryMap.$testText.val(textVal);
   };
   configModule = function ( input_map ) {
     spa.util.setConfigMap({
@@ -56,6 +59,7 @@ spa.chat = (function () {
 
   // return public methods
   return {
+    setText      : setText,
     configModule : configModule,
     initModule   : initModule
   };
