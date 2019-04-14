@@ -60,16 +60,25 @@ public class TextbookApplicationTests {
     @Test
     public void testApacheZip() throws IOException, ArchiveException {
         Resource resource = ctx.getResource("classpath:static");
-        File[] files = resource.getFile().listFiles(file -> file.isFile());
+        File[] files = resource.getFile().listFiles();
         try (FileOutputStream fo = new FileOutputStream("test.zip"); ArchiveOutputStream o = new ZipArchiveOutputStream(fo)) {
-            for (File f : files) {
-                ArchiveEntry entry = o.createArchiveEntry(f, f.getName());
-                o.putArchiveEntry(entry);
-                if (f.isFile()) {
-                    try (InputStream i = Files.newInputStream(f.toPath())) {
-                        IOUtils.copy(i, o);
-                    }
+            createZipArchiveEntry(null, files, o);
+        }
+    }
+
+    private void createZipArchiveEntry(String directoryName, File[] files, ArchiveOutputStream o) throws IOException {
+        for (File f : files) {
+            String newDirectoryName = directoryName == null ? f.getName() : directoryName + "/" + f.getName();
+            ArchiveEntry entry = o.createArchiveEntry(f, newDirectoryName);
+            o.putArchiveEntry(entry);
+            if (f.isFile()) {
+                try (InputStream i = Files.newInputStream(f.toPath())) {
+                    IOUtils.copy(i, o);
                 }
+            }
+            o.closeArchiveEntry();
+            if (f.isDirectory()) {
+                createZipArchiveEntry(newDirectoryName, f.listFiles(), o);
             }
         }
     }
