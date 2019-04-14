@@ -12,9 +12,16 @@
 /*global $, textbook */
 
 var textbook = (function () {
-  var initModule = function ( $container ) {
+  var config = {
+        env : 'remote' // local:离线版, remote:在线版
+     },
+     initModule;
+  initModule = function ( $container ) {
     textbook.shell.initModule( $container );
   };
   
-  return { initModule: initModule };
+  return {
+        config : config,
+    initModule : initModule
+  };
 }());

@@ -12,26 +12,5 @@
 /*global $, textbook */
 
 textbook.data = (function () {
-    var
-        query, save
-    ;
-    query = function( url ) {
-        return $.ajax({
-                 url : url,
-                type : "get",
-            dateType : 'json'
-        });
-    };
-    save = function( url ) {
-        return
-        $.ajax({
-                 url : url,
-                type : "post",
-            dateType : 'json'
-        });
-    };
-    return {
-        query : query,
-        save  : save
-    };
+    return {}
 }());

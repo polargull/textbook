@@ -9,7 +9,7 @@
   regexp : true, sloppy  : true, vars     : false,
   white  : true
 */
-/*global TAFFY, $, textbook */
+/*global, $, textbook */
 
 textbook.model = (function () {
   'use strict';
@@ -17,16 +17,15 @@ textbook.model = (function () {
     configMap = {},
     stateMap  = {},
 
-    isFakeData = true,
+    isFakeData = (textbook.config.env == 'local'),
     tree, initModule;
-
   tree = (function () {
     var
-      load
-     ;
+        load
+    ;
 
     load = function (callback) {
-        return textbook.data.query( './data/tree.json' ).done(callback);
+        isFakeData ? callback( textbook.data.tree ) : textbook.remote.query( 'remote/json' ).done(callback);
     };
 
     return {

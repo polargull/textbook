@@ -1,7 +1,6 @@
 package com.example.textbook;
 
 import org.apache.commons.compress.archivers.ArchiveEntry;
-import org.apache.commons.compress.archivers.ArchiveException;
 import org.apache.commons.compress.archivers.ArchiveOutputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.apache.commons.compress.utils.IOUtils;
@@ -58,7 +57,7 @@ public class TextbookApplicationTests {
     }
 
     @Test
-    public void testApacheZip() throws IOException, ArchiveException {
+    public void testApacheZip() throws IOException {
         Resource resource = ctx.getResource("classpath:static");
         File[] files = resource.getFile().listFiles();
         try (FileOutputStream fo = new FileOutputStream("test.zip"); ArchiveOutputStream o = new ZipArchiveOutputStream(fo)) {
@@ -68,10 +67,26 @@ public class TextbookApplicationTests {
 
     private void createZipArchiveEntry(String directoryName, File[] files, ArchiveOutputStream o) throws IOException {
         for (File f : files) {
+            if (f.getName().endsWith(".html") && !f.getName().equals("textbook-front.html"))
+                continue;
+            if (f.getName().endsWith(".js") && f.getName().startsWith("spa"))
+                continue;
             String newDirectoryName = directoryName == null ? f.getName() : directoryName + "/" + f.getName();
             ArchiveEntry entry = o.createArchiveEntry(f, newDirectoryName);
             o.putArchiveEntry(entry);
             if (f.isFile()) {
+                if (f.getName().equals("textbook.js")) {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+                    String data;
+                    StringBuilder sb = new StringBuilder();
+                    while ((data = br.readLine()) != null) {
+                        sb.append(data.replaceAll("remote", "local")).append("\n");
+                    }
+                    try (InputStream i = new ByteArrayInputStream(sb.toString().getBytes())) {
+                        IOUtils.copy(i, o);
+                    }
+                    continue;
+                }
                 try (InputStream i = Files.newInputStream(f.toPath())) {
                     IOUtils.copy(i, o);
                 }
